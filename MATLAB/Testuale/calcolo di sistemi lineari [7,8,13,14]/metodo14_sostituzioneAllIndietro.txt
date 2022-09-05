@@ -1,0 +1,41 @@
+--------------------------------------------------
+[14] METODO DI SOSTITUZIONE ALL'INDIETRO
+Metodo di sostituzione all'indietro per la risoluzione dei sistemi lineari con matrice dei coefficienti triangolare superiore.
+--------------------------------------------------
+
+function [x] = metodo14_sostituzioneAllIndietro(A, b)
+
+    n = length(A);  % Assegno ad n la dimensione della matrice A
+    x = zeros(n, 1);  % Inizializzo il vettore soluzione
+
+    x(n) = b(n) / A(n,n);  % Primo risultato
+
+    % Itero da n-1 a n-2 a 1
+    for i = n-1:-1:1
+    
+	    % Sommatoria (da i+1 a n)
+	    sommatoria = 0;
+	    for j = i+1:n
+		    sommatoria = sommatoria + A(i,j) * x(j);
+	    end
+	    
+	    x(i) = ( 1/A(i,i) ) * ( b(i)-sommatoria );  % Secondo risultato
+    
+    end
+
+end
+
+
+--------------------------------------------------
+[14] METODO DI SOSTITUZIONE ALL'INDIETRO: TEST
+--------------------------------------------------
+
+clear
+clc
+
+A = [16 2 3 13; 0 11 10 8; 0 0 6 12; 0 0 0 1];
+b = [34; 29; 18; 1];
+
+[x] = metodo14_sostituzioneAllIndietro(A, b);
+
+fprintf("Soluzione: [%f %f %f %f]\n", x);

@@ -1,0 +1,63 @@
+--------------------------------------------------
+[4] METODO DELLA RADICE N-ESIMA
+Metodo numerico per il calcolo della radice n-esima di un numero.
+--------------------------------------------------
+
+function [x1, i] = metodo4_radiceNesima(S, n, tol, nmax)
+
+    % x0 = xk
+    % x1 = xk+1
+
+    % Controllo che S sia maggiore di 0
+    if S <= 0
+        fprintf("Errore, il numero in input deve essere maggiore di zero.");
+        return  % Termino
+    end
+
+    x0 = S;  % Primo risultato
+    
+    % Itero da 0 a nmax-1
+    for i = 0:nmax-1
+
+        % Controllo che il denominatore sia diverso da zero
+        if n == 0 || x0^(n-1) == 0
+            fprintf("Errore, impossibile dividere per zero.");
+            return  % Termino
+        end
+
+        p1 = (n-1) * x0;  % Prima parte nella parentesi
+        p2 = S / (x0^(n-1));  % Seconda parte nella parentesi
+        x1 = (1/n) * (p1 + p2);  % Risultato finale
+
+        % Verifico se l'errore è minore della tolleranza (e termino)
+        err = abs(x1-x0) / abs(x0);  % Errore relativo
+        if err < tol
+            return  % Termino
+        end
+
+        % Approssimazione
+        x0 = x1;
+
+    end
+
+    i = -1;  % Flag di errore
+
+end
+
+
+--------------------------------------------------
+[4] METODO DELLA RADICE N-ESIMA: TEST
+--------------------------------------------------
+
+clear
+clc
+
+S = 286797;
+n = 5;
+tol = 1e-10;
+nmax = 100;
+
+[x1, i] = metodo4_radiceNesima(S, n, tol, nmax);
+
+fprintf("Risultato: %f\n", x1);
+fprintf("Iterate: %d\n", i);

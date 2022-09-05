@@ -1,0 +1,85 @@
+[1]
+- Soluzione numerica delle equazioni non lineari
+- Metodo delle successive bisezioni
+- Criteri di arresto per il metodo delle successive bisezioni
+
+[2]
+- Vantaggi e svantaggi del metodo delle successive bisezioni
+- Metodo regula falsi
+- Condizionamento di un problema
+- Studio del condizionamento dello zero di una funzione
+
+[3]
+- Intervallo di incertezza
+- Ordine di convergenza
+
+[4]
+- Metodo di Newton
+- Criteri di arresto
+
+[5]
+- Richiamo del metodo di Newton
+
+[6]
+- Varianti del metodo di Newton: corde, secanti, quasi-Newton
+
+[7]
+- Richiamo del teorema di Lagrange
+- Ordine di convergenza dele successioni definite per ricorrenza
+
+[8]
+- Aritmetica di macchina
+- Insieme dei numeri di macchina
+
+[9]
+- Gestione di underflow e overflow
+
+[10]
+- Arrotondamento
+- Precisione di macchina
+
+[11]
+- Condizionamento della valutazione di funzione
+
+[12]
+- Spazi vettoriali
+- Sottospazi vettoriali
+- Combinazioni lineari
+- Sottospazi generati da vettori
+
+[13]
+- Esistenza di un sottospazio vettoriale
+
+[14]
+- Sitema lineare
+- Nucleo, rango e operazioni elementari
+- Operazioni sulle matrici
+
+[15]
+- Struttura "a gradini"
+- Richiami e considerazioni (sulle matrici)
+- Teorema Rouché-Capelli
+
+[17]
+- Matrici quadrate, metodo di eliminazione di Gauss
+- Teorema di chiusura
+- Esistenza della fattorizzazione LU
+
+[18]
+- Unicità della fattorizzazione LU
+- Risoluzione di un sistema lineare mediante LU
+
+[19]
+- Permutazione
+- Pivoting per righe
+
+[20]
+- Risoluzione dei sistemi lineari
+- Norme vettoriali
+
+[21]
+- Vettori ortogonali
+- Regressione lineare
+- Condizionamento di un sistema lineare
+- Norma matriciale e vettoriale
+//

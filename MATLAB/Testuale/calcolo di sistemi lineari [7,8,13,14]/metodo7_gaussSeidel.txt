@@ -1,0 +1,58 @@
+--------------------------------------------------
+[7] METODO DI GAUSS-SEIDEL
+Metodo iterativo di Gauss-Seidel per la soluzione dei sistemi lineari.
+--------------------------------------------------
+
+function [x1, i, res] = metodo7_gaussSeidel(A, b, tol, x0, n)
+
+    % x0 = xk
+    % x1 = xk+1
+
+    L = tril(A);  % Restituisci la porzione triangolare inferiore [lower] di A (comprende la diagonale principale 0)
+    U = triu(A, 1);  % Restituisci la porzione triangolare superiore [upper] di A, dalla diagonale 1
+    % U = A - L;  % [Calcolo alternativo per U]
+
+    % Itero da 0 a n-1
+    for i = 0:n-1
+        
+        x1 = L \ (b - U * x0);  % Risultato finale
+
+        nix0 = norm(x0, "inf");  % x0 in norma infinito
+        nix1 = norm(x1, "inf");  % x1 in norma infinito
+
+        % Verifico se l'errore è minore della tolleranza (e termino)
+        err = abs(nix1-nix0) / abs(nix1);  % Errore relativo (in norma infinito)
+        if err < tol
+            res = norm(A * x1 - b, "inf");  % Salvo il residuo (in norma infinito)
+            return  % Termino
+        end
+
+        % Approssimazione
+        x0 = x1;
+
+    end
+
+    i = -1;  % Flag di errore
+    res = norm(A * x1 - b, "inf");  % Salvo il residuo (in norma infinito)
+
+end
+
+
+--------------------------------------------------
+[7] METODO DI GAUSS-SEIDEL: TEST
+--------------------------------------------------
+
+clear
+clc
+
+A = [2.4 -0.8 -0.7; 0.5 1.5 0.7; -0.1 0.8 2.1];
+b = [0.9; 2.7; 2.8];
+tol = 1e-5;
+x0 = [0.9; 0.9; 0.9];
+n = 100;
+
+[x1, i, res] = metodo7_gaussSeidel(A, b, tol, x0, n);
+
+fprintf("Soluzione: [%f %f %f]\n", x1);
+fprintf("Iterate: %d\n", i);
+fprintf("Residuo: %f\n", res);

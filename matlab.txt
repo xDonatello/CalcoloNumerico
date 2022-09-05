@@ -1,0 +1,32 @@
+COMANDI PRINCIPALI
+whos: vedere le variabili create
+clear: elimina tutte le variabili create
+clc: pulisci il terminale
+workspace: aprire l'ambiente con le variabili (nel caso venga chiuso)
+format [longe]: cambiare il formato visualizzato ("help format" per vederne l'elenco)
+edit nome.m: creare un file
+
+pwd: verificare il percorso aperto (tutto deve trovarsi nella stessa cartella)
+ls: vedere l'elenco dei file presenti nella cartella
+Usare "addpath" per aggiungere un percorso e "restoredefaultpath" per ritornare a quello principale.
+
+FILE MATLAB
+- Le FUNCTION hanno input ed ouput e non condividono il workspace (New > Live function)
+La funzione principale ha lo stesso nome del file.
+Da utilizzare per implementare i vari metodi.
+- Gli SCRIPT sono una sequenza di comandi eseguiti in cascata (New > Live script)
+Da utilizzare per chiarire gli esempi (test).
+
+UTILI
+Se X è un vettore "f=@(X)", è necessario scrivere X.^2 per fare il quadrato di tutti gli elementi del vettore.
+$...$ per formattare il testo in LaTeX (espressioni matematiche)
+tol=1e-6 : 6 cifre significative corrette (le prime 6 cifre dopo la virgola non hanno errori)
+		(10^-6 è la precisione massima di Matlab)
+
+OPERAZIONI
+Creare un vettore: V=[1,2,3];
+Per accedere al primo elemento: V(1);
+Per accedere all'ultimo elemento: V(end);
+Per accedere al penultimo elemento: V(end-1);
+Creare una matrice: M=[1,2,3;4,5,6];
+Per accedere all'elemento 1x5: M(1,4);

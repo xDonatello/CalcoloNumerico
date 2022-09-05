@@ -1,0 +1,60 @@
+--------------------------------------------------
+[15] METODO DI NEWTON
+Metodo di Newton (o delle tangenti) per il calcolo degli zeri di funzione (non lineari).
+--------------------------------------------------
+
+function [x1, i, res] = metodo15_newton(f, f1, x0, tol, n)
+
+    % x0 = xk-1
+    % x1 = xk
+
+    % Itero da 0 a n-1
+    for i = 0:n-1
+
+        fx0 = f(x0);
+        f1x0 = f1(x0);  % Derivata prima f'(xk)
+
+        % Controllo che il denominatore sia diverso da zero
+        if (f1x0 == 0)
+            fprintf("Errore, impossibile dividere, la derivata è uguale a zero.");
+            return  % Termino
+        end
+        
+        x1 = x0 - (fx0 / f1x0);  % Risultato finale
+
+        % Verifico se l'errore è minore della tolleranza (e termino)
+        err = abs(x1-x0);  % Errore assoluto
+        if err < tol * abs(x1)
+            res = f(x1);  % Salvo il residuo
+            return  % Termino
+        end
+
+        % Approssimazione
+        x0 = x1;
+
+    end
+
+    i = -1;  % Flag di errore
+    res = f(x1);  % Salvo il residuo
+
+end
+
+
+--------------------------------------------------
+[15] METODO DI NEWTON: TEST
+--------------------------------------------------
+
+clear
+clc
+
+f = @(x) x^3 - x - 1;
+f1 = @(x) 3 * x^2 - 1;
+x0 = 1.5;
+tol = 1e-8;
+n = 100;
+
+[x1, i, res] = metodo15_newton(f, f1, x0, tol, n);
+
+fprintf("Risultato: %f\n", x1);
+fprintf("Iterate: %d\n", i);
+fprintf("Residuo: %f\n", res);

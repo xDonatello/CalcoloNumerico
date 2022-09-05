@@ -1,0 +1,41 @@
+--------------------------------------------------
+[13] METODO DI SOSTITUZIONE IN AVANTI
+Metodo di sostituzione in avanti per la risoluzione dei sistemi lineari con matrice dei coefficienti trangolare inferiore.
+--------------------------------------------------
+
+function [x] = metodo13_sostituzioneInAvanti(A, b)
+
+    n = length(A);  % Assegno ad n la dimensione della matrice A
+    x = zeros(n, 1);  % Inizializzo il vettore soluzione
+
+    x(1) = b(1) / A(1,1);  % Primo risultato
+    
+    % Itero da 2 a n
+    for i = 2:n
+
+        % Sommatoria (da 1 a i-1)
+        sommatoria = 0;
+        for j = 1:i-1
+	        sommatoria = sommatoria + A(i,j) * x(j);
+        end
+
+        x(i) = ( 1/A(i,i) ) * ( b(i)-sommatoria );  % Secondo risultato
+
+    end
+
+end
+
+
+--------------------------------------------------
+[13] METODO DI SOSTITUZIONE IN AVANTI: TEST
+--------------------------------------------------
+
+clear
+clc
+
+A = [16 0 0 0; 5 11 0 0; 9 7 6 0; 4 14 15 1];
+b = [16; 16; 22; 34];
+
+[x] = metodo13_sostituzioneInAvanti(A, b);
+
+fprintf("Soluzione: [%f %f %f %f]\n", x);

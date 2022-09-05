@@ -1,0 +1,58 @@
+--------------------------------------------------
+[8] METODO DI JACOBI
+Metodo iterativo di Jacobi per la soluzione dei sistemi lineari.
+--------------------------------------------------
+
+function [x1, i, res] = metodo8_jacobi(A, b, tol, x0, n)
+
+    % x0 = xk
+    % x1 = xk+1
+
+    D = triu(tril(A));  % Restituisci la porzione triangolare superiore [upper]
+                        % della porzione triangolare inferiore [lower] di A
+    R = A - D;
+
+    % Itero da 0 a n-1
+    for i = 0:n-1
+
+        x1 = D \ (b - R * x0);  % Risultato finale
+
+        nix0 = norm(x0, "inf");  % x0 in norma infinito
+        nix1 = norm(x1, "inf");  % x1 in norma infinito
+
+        % Verifico se l'errore è minore della tolleranza (e termino)
+        err = abs(nix1-nix0) / abs(nix1);  % Errore relativo (in norma infinito)
+        if err < tol
+            res = norm(A * x1 - b, "inf");  % Salvo il residuo (in norma infinito)
+            return  % Termino
+        end
+
+        % Approssimazione
+        x0 = x1;
+
+    end
+
+    i = -1;  % Flag di errore
+    res = norm(A * x1 - b, "inf");  % Salvo il residuo (in norma infinito)
+
+end
+
+
+--------------------------------------------------
+[8] METODO DI JACOBI: TEST
+--------------------------------------------------
+
+clear
+clc
+
+A = [4 2 1; 2 4 2; 1 2 4];
+b = [7; 8; 7];
+tol = 1e-5;
+x0 = [1.1; 1.1; 1.1];
+n = 100;
+
+[x1, i, res] = metodo8_jacobi(A, b, tol, x0, n);
+
+fprintf("Risultato: [%f %f %f]\n", x1);
+fprintf("Iterate: %d\n", i);
+fprintf("Residuo: %f\n", res);

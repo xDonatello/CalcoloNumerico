@@ -1,0 +1,61 @@
+--------------------------------------------------
+[3] METODO DI TRAUB
+Metodo numerico a due passi (di Traub) per il calcolo degli zeri di funzione.
+--------------------------------------------------
+
+function [x1, i] = metodo3_traub(f, f1, x0, tol, n)
+
+    % x0 = xk
+    % x1 = xk+1
+    % y0 = yk
+
+    % Itero da 0 a n-1
+    for i = 0:n-1
+        
+        fx0 = f(x0);
+        f1x0 = f1(x0);  % Derivata prima f'(xk)
+
+        % Controllo che il denominatore sia diverso da zero
+        if f1x0 == 0
+            fprintf("Errore, impossibile dividere per zero.");
+            return  % Termino
+        end
+
+        y0 = x0 - fx0/f1x0;  % Primo risultato
+        fy0 = f(y0);
+        
+        x1 = y0 - fy0/f1x0;  % Risultato finale
+
+        % Verifico se l'errore è minore della tolleranza (e termino)
+        err = abs(x1-x0) / abs(x1);  % Errore relativo
+        if err < tol
+            return  % Termino
+        end
+
+        % Approssimazione
+        x0 = x1;
+
+    end
+
+    i = -1;  % Flag di errore
+
+end
+
+
+--------------------------------------------------
+[3] METODO DI TRAUB: TEST
+--------------------------------------------------
+
+clear
+clc
+
+f = @(x) 1 - x^2/2 - x^3;
+f1 = @(x) - x - 3 * x^2;
+x0 = 1;
+tol = 1e-10;
+n = 100;
+
+[x1, i] = metodo3_traub(f, f1, x0, tol, n);
+
+fprintf("Soluzione: %f\n", x1);
+fprintf("Iterate: %d\n", i);
