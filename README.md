@@ -1,6 +1,6 @@
 ## Calcolo Numerico: Teoria + Laboratorio (MATLAB)
 
-I metodi MATLAB qui presenti sono stati fatti dal sottoscritto, prendendo come base quelli svolti da **[Piersilvio](https://github.com/Piersilvio/MATLAB)** più quelli svolti dal **prof. Pugliese**.
+I metodi MATLAB qui presenti sono stati fatti dal sottoscritto, prendendo come base quelli svolti da **[Piersilvio](https://github.com/Piersilvio/MATLAB)** più quelli svolti dal **prof. Pugliese**.<br>
 Li ho rifatti in un modo più lineare e facile da ricordare (per me).
 
 **NB.** Mancano i due metodi per il calcolo dell'integrazione numerica: 9 (trapezi) e 10 (Simpson).
